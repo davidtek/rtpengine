@@ -215,7 +215,10 @@ void payload_tracker_add(struct payload_tracker *, int);
 
 #define ssrc_ctx_put(c) \
 	do { \
+_Pragma("GCC diagnostic push") \
+_Pragma("GCC diagnostic ignored \"-Waddress\"") \
 		if ((c) && *(c)) { \
+_Pragma("GCC diagnostic pop") \
 			obj_put(&(*c)->parent->h); \
 			*(c) = NULL; \
 		} \
